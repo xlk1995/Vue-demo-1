@@ -4,50 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="./vue.js"></script>
     <title>Document</title>
+    <style>
+        .actived{color: red;}
+    </style>
 </head>
 <body>
     <div id="app">
-        {{fullname}}
-        {{age}}
+        <div v-if="show ==='a'" >this is a !</div>
+        <div v-else-if="show === 'b'">this is b!</div>
+        <div v-else> this is other number</div>
     </div>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
     <script>
-        var vm = new Vue({
+        var app = new Vue({
             el:'#app',
-            data :{
-                firstName:'xiao',
-                lastName:'likang',
-                
-                age:29
-            },
-
-            // computed:{
-            //     fullname:{
-            //         get:function(){
-            //             return this.firstName + " "+this.lastName
-            //         },
-            //         set:function(value){
-            //             var arr = value.split(" ")
-            //             this.firstName = arr[0]
-            //             this.lastName = arr[1]
-            //         }
-            //     }
-
-            // }
-            // methods:{
-            //     fullname:function(){
-            //         console.log("计算了一次")
-            //         return this.firstName + ' ' + this.lastName
-            //     }
-            // }
-            computed:{
-                fullname:function(){
-                    console.log('计算了一次')
-                    return this.firstName + ' ' + this.lastName
-                }
+            data:{
+                show:'a'
             }
+
         })
+        
     </script>
 </body>
 </html>
