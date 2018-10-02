@@ -10,20 +10,41 @@
     </style>
 </head>
 <body>
-    <div id="app">
-        <div v-if="show ==='a'" >this is a !</div>
-        <div v-else-if="show === 'b'">this is b!</div>
-        <div v-else> this is other number</div>
+    <div id ="app" >
+       <counter @change="change" ref="one"></counter>
+       <counter @change="change" ref="two"></counter>
+       <div>{{total}}</div>
     </div>
+    
     <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
     <script>
+        Vue.component('counter',{
+            data:function(){
+                return{
+                    number:0
+                }
+            },
+            template:`<div @click="handleClick">{{number}}</div>`,
+            methods:{
+                handleClick:function(){
+                    this.number++
+                    this.$emit('change')
+                }
+            }
+        }     
+        )
         var app = new Vue({
             el:'#app',
             data:{
-                show:'a'
-            }
+                total:0
+            },
+            methods:{
+                change:function(){
 
-        })
+                    this.total=this.$refs.one.number+this.$refs.two.number
+                }            
+            }
+        })    
         
     </script>
 </body>
